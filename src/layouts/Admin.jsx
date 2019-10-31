@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
 
     }
     console.log(totalRecieve,totalWaste)
-    return {activeCountries:activeCountries}
+    return {activeCountries:activeCountries,totalRecieve:totalRecieve,totalWaste:totalWaste}
 
   }
 
@@ -112,7 +112,6 @@ class Dashboard extends React.Component {
     this.setState({ backgroundColor: color });
   };
   render() {
-    this.calculate()
     return (
       <div className="wrapper">
         <Sidebar
