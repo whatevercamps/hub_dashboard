@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
 
     }
     console.log(totalRecieve,totalWaste)
-    return {activeCountries:activeCountries,totalRecieve:totalRecieve,totalWaste:totalWaste}
+    return {activeCountries:activeCountries}
 
   }
 
@@ -112,6 +112,7 @@ class Dashboard extends React.Component {
     this.setState({ backgroundColor: color });
   };
   render() {
+    this.calculate()
     return (
       <div className="wrapper">
         <Sidebar
@@ -131,7 +132,7 @@ class Dashboard extends React.Component {
                   render={props => (
                     <prop.component
                       {...props}
-                      pruebajeje={["a", "b"]}
+                      data={this.calculate()}
                     />
                   )}
                   key={key}
