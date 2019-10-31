@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Paises Activos</p>
-                        <CardTitle tag="p">{this.props.activeCountries} de {this.props.totalCountries}</CardTitle>
+                        <CardTitle tag="p">{this.props.data? this.props.data.activeCountries : 0} de 23</CardTitle>
                         <p />
                       </div>
                     </Col>

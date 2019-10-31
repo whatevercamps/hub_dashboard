@@ -122,14 +122,19 @@ class Dashboard extends React.Component {
           activeColor={this.state.activeColor}
         />
         <div className="main-panel" ref={this.mainPanel}>
-          <DemoNavbar {...this.props} />
+        <DemoNavbar {...this.props} pruebaProps={["a","b","c"]} />
           <Switch>
             {routes.map((prop, key) => {
               return (
                 <Route
                   data={this.calculate()}
                   path={prop.layout + prop.path}
-                  component={prop.component}
+                  render={props => (
+                    <prop.component
+                      {...props}
+                      pruebajeje={["a", "b"]}
+                    />
+                  )}
                   key={key}
                 />
               );
