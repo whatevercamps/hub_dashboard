@@ -28,129 +28,126 @@ class Dashboard extends React.Component {
     };
     this.mainPanel = React.createRef();
 
-    if (firebase.apps.length === 0)
-    {
-    this.app = firebase.initializeApp(firebaseConfig);
-    
+    if (firebase.apps.length === 0) {
+      this.app = firebase.initializeApp(firebaseConfig);
+
     }
     this.db = firebase.firestore();
-    
+
   }
 
 
-  calculate(){
+  calculate() {
 
 
     let activeCountries = new Set();
     let totalRecieve = 0;
     let totalWaste = 0;
     let payments = [];
-    for(var project of this.state.projects)
-    {
+    for (var project of this.state.projects) {
       console.log(project)
-      if (project.active){
+      if (project.active) {
         activeCountries.add(project.country)
       }
 
-      for(var payment of project.recived)
-      {
-        totalRecieve+=payment.amount
+      for (var payment of project.recived) {
+        totalRecieve += payment.amount
         console.log(payment)
       }
 
-      for(var waste of project.wasted)
-      {
-        totalWaste+=waste.amount
+      for (var waste of project.wasted) {
+        totalWaste += waste.amount
       }
 
 
     }
-    console.log(totalRecieve,totalWaste)
-    return {activeCountries:activeCountries}
+
+  console.log(totalRecieve, totalWaste)
+    return { activeCountries: activeCountries }
 
   }
 
 
-  componentDidMount() {
-    console.log("consoleDidMount")
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(this.mainPanel.current);
-      document.body.classList.toggle("perfect-scrollbar-on");
+componentDidMount() {
+  console.log("consoleDidMount")
+  if (navigator.platform.indexOf("Win") > -1) {
+    ps = new PerfectScrollbar(this.mainPanel.current);
+    document.body.classList.toggle("perfect-scrollbar-on");
 
-    }
   }
-  componentWillMount() {
-    
-    this.db.collection("projects")
+}
+componentWillMount() {
+
+  this.db.collection("projects")
     .onSnapshot(snapshot => {
       let projects = []
       snapshot.forEach(doc =>
         projects.push(doc.data())
       );
 
-        this.setState({projects})
+      this.setState({ projects })
 
     })
 
 
-  }
+}
 
-  componentDidMount() {
-  }
+componentDidMount() {
+}
 
 
-  componentDidUpdate(e) {
-    if (e.history.action === "PUSH") {
-      this.mainPanel.current.scrollTop = 0;
-      document.scrollingElement.scrollTop = 0;
-    }
+componentDidUpdate(e) {
+  if (e.history.action === "PUSH") {
+    this.mainPanel.current.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
   }
-  handleActiveClick = color => {
-    this.setState({ activeColor: color });
-  };
-  handleBgClick = color => {
-    this.setState({ backgroundColor: color });
-  };
-  render() {
-    this.calculate()
-    return (
-      <div className="wrapper">
-        <Sidebar
-          {...this.props}
-          routes={routes}
-          bgColor={this.state.backgroundColor}
-          activeColor={this.state.activeColor}
-        />
-        <div className="main-panel" ref={this.mainPanel}>
-        <DemoNavbar {...this.props} pruebaProps={["a","b","c"]} />
-          <Switch>
-            {routes.map((prop, key) => {
-              return (
-                <Route
-                  data={this.calculate()}
-                  path={prop.layout + prop.path}
-                  render={props => (
-                    <prop.component
-                      {...props}
-                      data={this.calculate()}
-                    />
-                  )}
-                  key={key}
-                />
-              );
-            })}
-          </Switch>
-          {/* <Footer fluid /> */}
-        </div>
-        {/* <FixedPlugin
+}
+handleActiveClick = color => {
+  this.setState({ activeColor: color });
+};
+handleBgClick = color => {
+  this.setState({ backgroundColor: color });
+};
+render() {
+  this.calculate()
+  return (
+    <div className="wrapper">
+      <Sidebar
+        {...this.props}
+        routes={routes}
+        bgColor={this.state.backgroundColor}
+        activeColor={this.state.activeColor}
+      />
+      <div className="main-panel" ref={this.mainPanel}>
+        <DemoNavbar {...this.props} pruebaProps={["a", "b", "c"]} />
+        <Switch>
+          {routes.map((prop, key) => {
+            return (
+              <Route
+                data={this.calculate()}
+                path={prop.layout + prop.path}
+                render={props => (
+                  <prop.component
+                    {...props}
+                    data={this.calculate()}
+                  />
+                )}
+                key={key}
+              />
+            );
+          })}
+        </Switch>
+        {/* <Footer fluid /> */}
+      </div>
+      {/* <FixedPlugin
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
           handleActiveClick={this.handleActiveClick}
           handleBgClick={this.handleBgClick}
         /> */}
-      </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 export default Dashboard;
