@@ -35,8 +35,8 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Paises Activoss</p>
-                        <CardTitle tag="p">3 de 15</CardTitle>
+                        <p className="card-category">Paises Activos</p>
+                        <CardTitle tag="p">{this.props.activeCountries} de {this.props.totalCountries}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -45,7 +45,33 @@ class Dashboard extends React.Component {
                 <CardFooter>
                   <hr />
                   <div className="stats">
-                    <i className="fas fa-sync-alt" /> 5 en fase de cierre
+                    <i className="fas fa-sync-alt" />
+                  </div>
+                </CardFooter>
+              </Card>
+            </Col>
+            <Col lg="3" md="6" sm="6">
+              <Card className="card-stats">
+                <CardBody>
+                  <Row>
+                    <Col md="4" xs="5">
+                      <div className="icon-big text-center icon-warning">
+                        <i className="nc-icon nc-vector text-info" />
+                      </div>
+                    </Col>
+                    <Col md="8" xs="7">
+                      <div className="numbers">
+                        <p className="card-category">Proyectos</p>
+                        <CardTitle tag="p">{this.props.projects? this.props.projects.length :0}</CardTitle>
+                        <p />
+                      </div>
+                    </Col>
+                  </Row>
+                </CardBody>
+                <CardFooter>
+                  <hr />
+                  <div className="stats">
+                    <i className="far fa-clock" /> {this.props.closurePhaseProjects} en fase de cierre
                   </div>
                 </CardFooter>
               </Card>
@@ -61,8 +87,8 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Presupuesto</p>
-                        <CardTitle tag="p">$ +1,345</CardTitle>
+                        <p className="card-category">Ingresos</p>
+                        <CardTitle tag="p">1,345</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -82,13 +108,13 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-vector text-danger" />
+                        <i className="nc-icon nc-money-coins text-danger" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Proyectos</p>
-                        <CardTitle tag="p">12</CardTitle>
+                        <p className="card-category">Egresos</p>
+                        <CardTitle tag="p">1,345</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -97,33 +123,7 @@ class Dashboard extends React.Component {
                 <CardFooter>
                   <hr />
                   <div className="stats">
-                    <i className="far fa-clock" /> 12 en fase de cierre
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg="3" md="6" sm="6">
-              <Card className="card-stats">
-                <CardBody>
-                  <Row>
-                    <Col md="4" xs="5">
-                      <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-favourite-28 text-primary" />
-                      </div>
-                    </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p className="card-category">Indicadores</p>
-                        <CardTitle tag="p">4</CardTitle>
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fas fa-sync-alt" /> Ver lista
+                    <i className="far fa-calendar" /> Actualizado ayer
                   </div>
                 </CardFooter>
               </Card>
@@ -144,10 +144,11 @@ class Dashboard extends React.Component {
                 </CardBody>
                 <CardFooter>
                   <div className="legend">
-                    <i className="fa fa-circle text-primary" /> Desarrollando{" "}
-                    <i className="fa fa-circle text-warning" /> En fase propuesta{" "}
-                    <i className="fa fa-circle text-danger" /> Descartados{" "}
-                    <i className="fa fa-circle text-gray" /> Terminados
+                    <i className="fa fa-circle text-primary" /> Concepto{" "}
+                    <i className="fa fa-circle text-warning" /> Planeación{" "}
+                    <i className="fa fa-circle text-danger" /> Implementación{" "}
+                    <i className="fa fa-circle text-gray" /> Control{" "}
+                    <i className="fa fa-circle text-gray" /> Cierre{" "}
                   </div>
                   <hr />
                   <div className="stats">
@@ -159,12 +160,12 @@ class Dashboard extends React.Component {
             <Col md="8">
               <Card className="card-chart">
                 <CardHeader>
-                  <CardTitle tag="h5">ECHO VS. PLANEA APP</CardTitle>
-                  <p className="card-category">Proyectos con mayor rentabilidad</p>
+                  <CardTitle tag="h5">Ingresos VS. Egresos</CardTitle>
+                  <p className="card-category">Año 2019</p>
                 </CardHeader>
                 <CardBody>
                   <Line
-                    data={dashboardNASDAQChart.data}
+                    data={dashboardNASDAQChart}
                     options={dashboardNASDAQChart.options}
                     width={400}
                     height={100}
@@ -187,16 +188,10 @@ class Dashboard extends React.Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h5">Mapa de Actividad</CardTitle>
+                  <CardTitle tag="h5">Lista resumen de proyectos</CardTitle>
                   <p className="card-category">Hace 24 horas</p>
                 </CardHeader>
                 <CardBody>
-                  <Line
-                    data={dashboard24HoursPerformanceChart.data}
-                    options={dashboard24HoursPerformanceChart.options}
-                    width={400}
-                    height={100}
-                  />
                 </CardBody>
                 <CardFooter>
                   <hr />

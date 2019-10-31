@@ -1,21 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 const dashboard24HoursPerformanceChart = {
   data: canvas => {
     return {
@@ -113,9 +95,9 @@ const dashboardEmailStatisticsChart = {
           label: "Emails",
           pointRadius: 0,
           pointHoverRadius: 0,
-          backgroundColor: ["#e3e3e3", "#4acccd", "#fcc468", "#ef8157"],
+          backgroundColor: ["#F9A246", "#E65F66", "#3E9DCC", "#42566F"],
           borderWidth: 0,
-          data: [342, 480, 530, 120]
+          data: [342, 480, 530, 120, 45]
         }
       ]
     };
@@ -180,25 +162,26 @@ const dashboardNASDAQChart = {
       "Sep",
       "Oct",
       "Nov",
-      "Dec"
+      "Dec",
+      "ped"
     ],
     datasets: [
       {
-        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
+        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70, 10],
         fill: false,
-        borderColor: "#fbc658",
+        borderColor: "#6bd098",
         backgroundColor: "transparent",
-        pointBorderColor: "#fbc658",
+        pointBorderColor: "#6bd098",
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8
       },
       {
-        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
+        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63, 10],
         fill: false,
-        borderColor: "#51CACF",
+        borderColor: "#EF8057",
         backgroundColor: "transparent",
-        pointBorderColor: "#51CACF",
+        pointBorderColor: "#EF8057",
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8
