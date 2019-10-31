@@ -10,9 +10,9 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import routes from "routes.js";
 
-// import * as firebase from "firebase/app";
-// import { firebaseConfig } from 'variables/Config';
-// import 'firebase/database';
+import firebase from "firebase";
+import { firebaseConfig } from 'variables/Config';
+import 'firebase/database';
 
 var ps;
 
@@ -22,9 +22,55 @@ class Dashboard extends React.Component {
     this.state = {
       backgroundColor: "black",
       activeColor: "info",
+      projects: [],
+      totalCountries: 23,
+
     };
     this.mainPanel = React.createRef();
+
+    if (firebase.apps.length === 0)
+    {
+    this.app = firebase.initializeApp(firebaseConfig);
+    
+    }
+    this.db = firebase.firestore();
+    
   }
+
+
+  calculate(){
+
+
+    let activeCountries = new Set();
+    let totalRecieve = 0;
+    let totalWaste = 0;
+    let payments = [];
+    for(var project of this.state.projects)
+    {
+      console.log(project)
+      if (project.active){
+        activeCountries.add(project.country)
+      }
+
+      for(var payment of project.recived)
+      {
+        totalRecieve+=payment.amount
+        console.log(payment)
+      }
+
+      for(var waste of project.wasted)
+      {
+        totalWaste+=waste.amount
+      }
+
+
+    }
+    console.log(totalRecieve,totalWaste)
+    return {activeCountries:activeCountries}
+
+  }
+
+
   componentDidMount() {
     console.log("consoleDidMount")
     if (navigator.platform.indexOf("Win") > -1) {
@@ -33,19 +79,26 @@ class Dashboard extends React.Component {
 
     }
   }
-  componentWillUnmount() {
-    console.log("consoleWillUnmount")
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps.destroy();
-      document.body.classList.toggle("perfect-scrollbar-on");
-    }
+  componentWillMount() {
+    
+    this.db.collection("projects")
+    .onSnapshot(snapshot => {
+      let projects = []
+      snapshot.forEach(doc =>
+        projects.push(doc.data())
+      );
+
+        this.setState({projects})
+
+    })
 
 
   }
 
-  componentWillMount(){
-    console.log("will mount")
+  componentDidMount() {
   }
+
+
   componentDidUpdate(e) {
     if (e.history.action === "PUSH") {
       this.mainPanel.current.scrollTop = 0;
@@ -59,6 +112,7 @@ class Dashboard extends React.Component {
     this.setState({ backgroundColor: color });
   };
   render() {
+    this.calculate()
     return (
       <div className="wrapper">
         <Sidebar
@@ -73,6 +127,7 @@ class Dashboard extends React.Component {
             {routes.map((prop, key) => {
               return (
                 <Route
+                  data={this.calculate()}
                   path={prop.layout + prop.path}
                   component={prop.component}
                   key={key}
