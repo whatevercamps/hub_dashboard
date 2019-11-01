@@ -94,7 +94,7 @@ class Dashboard extends React.Component {
 
     }
   }
-  componentWillUnMount() {
+  componentWillMount() {
 
     this.db.collection("projects")
       .onSnapshot(snapshot => {
