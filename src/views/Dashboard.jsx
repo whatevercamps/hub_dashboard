@@ -166,7 +166,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Line
-                    data={dashboardNASDAQChart}
+                    data={dashboardNASDAQChart.data}
                     options={dashboardNASDAQChart.options}
                     width={400}
                     height={100}

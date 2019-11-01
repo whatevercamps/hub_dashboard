@@ -151,23 +151,22 @@ const dashboardEmailStatisticsChart = {
 const dashboardNASDAQChart = {
   data: {
     labels: [
-      "Jan",
+      "Ene",
       "Feb",
       "Mar",
-      "Apr",
+      "Abr",
       "May",
       "Jun",
       "Jul",
-      "Aug",
+      "Ago",
       "Sep",
       "Oct",
       "Nov",
-      "Dec",
-      "ped"
+      "Dic"
     ],
     datasets: [
       {
-        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70, 10],
+        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
         fill: false,
         borderColor: "#6bd098",
         backgroundColor: "transparent",
@@ -177,7 +176,7 @@ const dashboardNASDAQChart = {
         pointBorderWidth: 8
       },
       {
-        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63, 10],
+        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
         borderColor: "#EF8057",
         backgroundColor: "transparent",
