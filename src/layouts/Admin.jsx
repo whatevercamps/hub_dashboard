@@ -80,7 +80,8 @@ class Dashboard extends React.Component {
         totalWaste: totalWaste,
         fases:Object.values(fases),
         timePayments:payments,
-        timeWastes: wastes}
+        timeWastes: wastes,
+        projects:this.state.projects}
 
   }
 
@@ -93,7 +94,7 @@ class Dashboard extends React.Component {
 
     }
   }
-  componentWillMount() {
+  componentWillUnMount() {
 
     this.db.collection("projects")
       .onSnapshot(snapshot => {
