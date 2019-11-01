@@ -62,20 +62,19 @@ class Dashboard extends React.Component {
 
       for (var payment of project.recived) {
         totalRecieve += payment.amount
-        let month = new Date(payment.date.seconds).getMonth()
+        let month = payment.date.toDate().getMonth()
         payments[month] +=payment.amount
         
       }
 
       for (var waste of project.wasted) {
         totalWaste += waste.amount
-        let month = new Date(waste.date.seconds).getMonth()
-        wastes[month] +=waste.amount
+        let month = waste.date.toDate().getMonth()
+        wastes[month] += waste.amount
       }
 
 
     }
-    console.log(payments,wastes)
     return { activeCountries: activeCountries,
        totalRecieve: totalRecieve,
         totalWaste: totalWaste,
