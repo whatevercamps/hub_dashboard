@@ -89,14 +89,14 @@ const dashboard24HoursPerformanceChart = {
 const dashboardEmailStatisticsChart = {
   data: canvas => {
     return {
-      labels: [1, 2, 3],
+      labels: ["Concepto", "Planeación", "Implementación", "Control", "Cierre"],
       datasets: [
         {
           label: "Emails",
           pointRadius: 0,
           pointHoverRadius: 0,
-          backgroundColor: ["#F9A246", "#E65F66", "#3E9DCC", "#42566F"],
-          borderWidth: 0,
+          backgroundColor: ["#F9A246", "#E65F66", "#3E9DCC", "#42566F", "#dddddd"],
+          borderWidth: 1,
           data: [342, 480, 530, 120, 45]
         }
       ]
@@ -114,7 +114,7 @@ const dashboardEmailStatisticsChart = {
     },
 
     tooltips: {
-      enabled: false
+      enabled: true
     },
 
     scales: {
@@ -148,29 +148,30 @@ const dashboardEmailStatisticsChart = {
   }
 };
 
+
 const dashboardNASDAQChart = {
   data: {
     labels: [
-      "Ene",
+      "Jan",
       "Feb",
       "Mar",
-      "Abr",
+      "Apr",
       "May",
       "Jun",
       "Jul",
-      "Ago",
+      "Aug",
       "Sep",
       "Oct",
       "Nov",
-      "Dic"
+      "Dec"
     ],
     datasets: [
       {
         data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
         fill: false,
-        borderColor: "#6bd098",
+        borderColor: "#fbc658",
         backgroundColor: "transparent",
-        pointBorderColor: "#6bd098",
+        pointBorderColor: "#fbc658",
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8
@@ -178,9 +179,9 @@ const dashboardNASDAQChart = {
       {
         data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
-        borderColor: "#EF8057",
+        borderColor: "#51CACF",
         backgroundColor: "transparent",
-        pointBorderColor: "#EF8057",
+        pointBorderColor: "#51CACF",
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8
