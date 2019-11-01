@@ -44,15 +44,24 @@ class Dashboard extends React.Component {
     let totalRecieve = 0;
     let totalWaste = 0;
     let payments = [];
+    let fases = {
+      concepto:0,
+      planeacion:0,
+      implementacion:0,
+      control:0,
+      cierre:0
+    }
     for (var project of this.state.projects) {
-      console.log(project)
+      
+
+      fases[project.fase] +=1
       if (project.active) {
         activeCountries.add(project.country)
       }
 
       for (var payment of project.recived) {
         totalRecieve += payment.amount
-        console.log(payment)
+        
       }
 
       for (var waste of project.wasted) {
@@ -61,8 +70,10 @@ class Dashboard extends React.Component {
 
 
     }
-    console.log(totalRecieve, totalWaste)
-    return { activeCountries: activeCountries, totalRecieve: totalRecieve, totalWaste: totalWaste }
+    return { activeCountries: activeCountries,
+       totalRecieve: totalRecieve,
+        totalWaste: totalWaste,
+        fases:Object.values(fases) }
 
   }
 
