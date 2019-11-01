@@ -43,7 +43,8 @@ class Dashboard extends React.Component {
     let activeCountries = new Set();
     let totalRecieve = 0;
     let totalWaste = 0;
-    let payments = [];
+    let payments = [0,0,0,0,0,0,0,0,0,0,0,0];
+    let wastes = [0,0,0,0,0,0,0,0,0,0,0,0];
     let fases = {
       concepto:0,
       planeacion:0,
@@ -61,19 +62,26 @@ class Dashboard extends React.Component {
 
       for (var payment of project.recived) {
         totalRecieve += payment.amount
+        let month = new Date(payment.date.seconds).getMonth()
+        payments[month] +=payment.amount
         
       }
 
       for (var waste of project.wasted) {
         totalWaste += waste.amount
+        let month = new Date(waste.date.seconds).getMonth()
+        wastes[month] +=waste.amount
       }
 
 
     }
+    console.log(payments,wastes)
     return { activeCountries: activeCountries,
        totalRecieve: totalRecieve,
         totalWaste: totalWaste,
-        fases:Object.values(fases) }
+        fases:Object.values(fases),
+        timePayments:payments,
+        timeWastes: wastes}
 
   }
 
