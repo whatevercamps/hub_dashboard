@@ -167,6 +167,7 @@ const dashboardNASDAQChart = {
     ],
     datasets: [
       {
+        label: 'insumos',
         data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
         fill: false,
         borderColor: "#fbc658",
@@ -177,6 +178,7 @@ const dashboardNASDAQChart = {
         pointBorderWidth: 8
       },
       {
+        label: 'gastos',
         data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
         borderColor: "#51CACF",

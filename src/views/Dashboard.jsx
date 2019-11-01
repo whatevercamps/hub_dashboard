@@ -171,7 +171,13 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Line
-                    data={dashboardNASDAQChart.data}
+                    data={() => {
+                      let data = dashboardNASDAQChart.data;
+                      data.datasets[0].data = this.props.data.timePayments;
+                      data.datasets[1].data = this.props.data.timeWastes;
+                      console.log(data)
+                      return data;
+                    }}
                     options={dashboardNASDAQChart.options}
                     width={400}
                     height={100}
