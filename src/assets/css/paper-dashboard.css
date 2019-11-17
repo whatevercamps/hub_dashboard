@@ -4780,3 +4780,25 @@ License - nucleoapp.com/license/
 
 *, *:focus, a, a:focus {
   outline: none; }
+
+
+.i_concept {
+  color: transparent;
+  background: linear-gradient(to right, #868789 0%, #868789 50%, #008000 50%, #008000 100%);
+}
+
+.i_plan {
+  color: #E65F66 !important;
+}
+
+.i_imple {
+  color: #3E9DCC
+}
+
+.i_control {
+  color: #42566F
+}
+
+.i_cierre {
+  color: #dddddd
+}

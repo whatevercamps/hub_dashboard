@@ -152,27 +152,27 @@ const dashboardEmailStatisticsChart = {
 const dashboardNASDAQChart = {
   data: {
     labels: [
-      "Jan",
+      "Ene",
       "Feb",
       "Mar",
-      "Apr",
+      "Abr",
       "May",
       "Jun",
       "Jul",
-      "Aug",
+      "Ago",
       "Sep",
       "Oct",
       "Nov",
-      "Dec"
+      "Dic"
     ],
     datasets: [
       {
         label: 'insumos',
         data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
         fill: false,
-        borderColor: "#fbc658",
+        borderColor: "#6bd098",
         backgroundColor: "transparent",
-        pointBorderColor: "#fbc658",
+        pointBorderColor: "#6bd098",
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8
@@ -181,9 +181,9 @@ const dashboardNASDAQChart = {
         label: 'gastos',
         data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
-        borderColor: "#51CACF",
+        borderColor: "#ef8157",
         backgroundColor: "transparent",
-        pointBorderColor: "#51CACF",
+        pointBorderColor: "#ef8157",
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8

@@ -18,6 +18,8 @@ import {
   dashboardNASDAQChart
 } from "variables/charts.jsx";
 
+import './dashboard.css'
+
 class Dashboard extends React.Component {
   render() {
     console.log(this.props)
@@ -63,7 +65,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Proyectos</p>
-                        <CardTitle tag="p">{this.props.projects ? this.props.projects.length : 0}</CardTitle>
+                        <CardTitle tag="p">{this.props.data && this.props.data.projects ? this.props.data.projects.length : 0}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -150,15 +152,15 @@ class Dashboard extends React.Component {
                 </CardBody>
                 <CardFooter>
                   <div className="legend">
-                    <i className="fa fa-circle text-primary" /> Concepto{" "}
-                    <i className="fa fa-circle text-warning" /> Planeación{" "}
-                    <i className="fa fa-circle text-danger" /> Implementación{" "}
-                    <i className="fa fa-circle text-gray" /> Control{" "}
-                    <i className="fa fa-circle text-gray" /> Cierre{" "}
+                    <i className="fa fa-circle i_concept" /> Concepto{" "}
+                    <i className="fa fa-circle i_plan" /> Planeación{" "}<br/>
+                    <i className="fa fa-circle i_imple" /> Implementación{" "}
+                    <i className="fa fa-circle i_control" /> Control{" "}
+                    <i className="fa fa-circle i_cierre" /> Cierre{" "}
                   </div>
                   <hr />
                   <div className="stats">
-                    <i className="fa fa-calendar" /> Total de proyectos: 46
+                    <i className="fa fa-calendar" /> Total de proyectos: {this.props.data && this.props.data.projects ? this.props.data.projects.length : 0}
                   </div>
                 </CardFooter>
               </Card>
