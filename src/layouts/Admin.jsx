@@ -99,6 +99,7 @@ class Dashboard extends React.Component {
         fases:Object.values(fases),
         timePayments:payments,
         timeWastes: wastes,
+        moneyMandatos: moneyMandatos,
         projects:this.state.projects}
 
   }
