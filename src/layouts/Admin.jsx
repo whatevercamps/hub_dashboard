@@ -52,6 +52,13 @@ class Dashboard extends React.Component {
       control:0,
       cierre:0
     }
+
+    let moneyMandatos = {
+      "salud reproductiva": [0,0,0,0,0,0,0,0,0,0,0,0],
+      "estrategias de desarrollo":[0,0,0,0,0,0,0,0,0,0,0,0],
+      "igualdad de género y población":[0,0,0,0,0,0,0,0,0,0,0,0],
+    }
+
     for (var project of this.state.projects) {
       
 
@@ -60,10 +67,13 @@ class Dashboard extends React.Component {
         activeCountries.add(project.country)
       }
 
+      
+      let mandato = project.mandato
       for (var payment of project.recived) {
         totalRecieve += payment.amount
         let month = payment.date.toDate().getMonth()
-        payments[month] +=payment.amount
+
+        moneyMandatos[mandato][month] +=payment.amount
         
       }
 
@@ -75,6 +85,14 @@ class Dashboard extends React.Component {
 
 
     }
+    console.log({ activeCountries: activeCountries,
+      totalRecieve: totalRecieve,
+       totalWaste: totalWaste,
+       fases:Object.values(fases),
+       timePayments:payments,
+       timeWastes: wastes,
+       moneyMandatos: moneyMandatos,
+       projects:this.state.projects})
     return { activeCountries: activeCountries,
        totalRecieve: totalRecieve,
         totalWaste: totalWaste,
@@ -106,7 +124,6 @@ class Dashboard extends React.Component {
         this.setState({ projects })
 
       })
-
 
   }
 
