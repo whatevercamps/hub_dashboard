@@ -192,15 +192,16 @@ class Dashboard extends React.Component {
             <Col md="8">
               <Card className="card-chart">
                 <CardHeader>
-                  <CardTitle tag="h5">Ingresos VS. Egresos</CardTitle>
+                  <CardTitle tag="h5">Mandatos</CardTitle>
                   <p className="card-category">Año 2019</p>
                 </CardHeader>
                 <CardBody>
                   <Line
                     data={() => {
                       let data = dashboardNASDAQChart.data;
-                      data.datasets[0].data = this.props.data.timePayments;
-                      data.datasets[1].data = this.props.data.timeWastes;
+                      data.datasets[0].data = this.props.data.moneyMandatos['salud reproductiva'];
+                      data.datasets[1].data = this.props.data.moneyMandatos['estrategias de desarrollo'];
+                      data.datasets[2].data = this.props.data.moneyMandatos['igualdad de género y población'];
                       console.log(data)
                       return data;
                     }}
