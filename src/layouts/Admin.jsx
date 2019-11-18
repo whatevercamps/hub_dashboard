@@ -69,13 +69,16 @@ class Dashboard extends React.Component {
 
       
       let mandato = project.mandato
+      let localTotal = 0
       for (var payment of project.recived) {
         totalRecieve += payment.amount
         let month = payment.date.toDate().getMonth()
 
         moneyMandatos[mandato][month] +=payment.amount
-        
+        localTotal += payment.amount
       }
+
+      project.totalRecieve = localTotal
 
       for (var waste of project.wasted) {
         totalWaste += waste.amount

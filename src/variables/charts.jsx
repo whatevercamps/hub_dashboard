@@ -167,7 +167,7 @@ const dashboardNASDAQChart = {
     ],
     datasets: [
       {
-        label: 'insumos',
+        label: 'salud reproductiva',
         data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
         fill: false,
         borderColor: "#6bd098",
@@ -178,12 +178,23 @@ const dashboardNASDAQChart = {
         pointBorderWidth: 8
       },
       {
-        label: 'gastos',
+        label: 'estrategias de desarrollo',
         data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
         borderColor: "#ef8157",
         backgroundColor: "transparent",
         pointBorderColor: "#ef8157",
+        pointRadius: 4,
+        pointHoverRadius: 4,
+        pointBorderWidth: 8
+      },
+      {
+        label: 'igualdad de género y población',
+        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
+        fill: false,
+        borderColor: "#F9F929",
+        backgroundColor: "transparent",
+        pointBorderColor: "#F9F929",
         pointRadius: 4,
         pointHoverRadius: 4,
         pointBorderWidth: 8
