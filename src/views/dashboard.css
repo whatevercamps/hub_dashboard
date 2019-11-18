@@ -17,3 +17,20 @@
 .i_cierre {
     color: #dddddd
 }
+
+.dropdown-menu {
+    z-index: 1000000 !important;
+}
+
+
+.dropdown-menu #genero:hover{
+  background-color:#EF476F;
+}
+
+.dropdown-menu #desarrollo:hover{
+    background-color:#19EAD5;
+  }
+
+  .dropdown-menu #poblacion:hover{
+    background-color:#FFE316;
+  }

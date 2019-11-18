@@ -1,6 +1,11 @@
 import React from "react";
 // react plugin used to create charts
 import { Line, Pie } from "react-chartjs-2";
+import { Line as ProgressBar, Circle as ProgressCircle } from 'rc-progress';
+import FitText from '@kennethormandy/react-fittext'
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import SeleccionadorMandato from 'components/SeleccionadorMandato/SeleccionadorMandato'
 // reactstrap components
 import {
   Card,
@@ -19,6 +24,7 @@ import {
 } from "variables/charts.jsx";
 
 import './dashboard.css'
+import { buildChildren } from "@babel/types";
 
 class Dashboard extends React.Component {
   render() {
@@ -33,12 +39,16 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-globe text-warning" />
+                        {/* <i className="nc-icon nc-chat-33 text-warning" /> */}
+                        <FitText compressor={0.15}>
+                          <SeleccionadorMandato />
+                        </FitText>
+
                       </div>
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Paises Activos</p>
+                        <p className="card-category">Mandato</p>
                         <CardTitle tag="p">{this.props.data ? this.props.data.activeCountries.size : 0} de 23</CardTitle>
                         <p />
                       </div>
@@ -111,13 +121,27 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-money-coins text-danger" />
+                        <div style={{ height: '100%', width: '100%', padding: '3%', margin: '3%' }}>
+                          <CircularProgressbar value={70} text={`${70}%`} styles={buildStyles({
+                            textColor: '#d3d3d3',
+                            pathColor: `#6bd098`,
+                            trailColor: '#d3d3d3'
+                          })} />
+                        </div>
+
+
+                        {/* <FitText compressor={0.85}>
+                          <h1 style={{marginBottom:'0px'}}>70<small>%</small></h1>
+                          </FitText> */}
+                        {/* <ProgressCircle percent="70" strokeWidth="6" strokeColor="#6bd098" /> */}
                       </div>
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Egresos</p>
-                        <CardTitle tag="p">${this.props.data.totalWaste}</CardTitle>
+                        <p className="card-category">Progreso</p>
+                        <CardTitle tag="p">
+                          <ProgressBar percent="70" strokeWidth="6" strokeColor="#6bd098" />
+                        </CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -153,7 +177,7 @@ class Dashboard extends React.Component {
                 <CardFooter>
                   <div className="legend">
                     <i className="fa fa-circle i_concept" /> Concepto{" "}
-                    <i className="fa fa-circle i_plan" /> Planeación{" "}<br/>
+                    <i className="fa fa-circle i_plan" /> Planeación{" "}<br />
                     <i className="fa fa-circle i_imple" /> Implementación{" "}
                     <i className="fa fa-circle i_control" /> Control{" "}
                     <i className="fa fa-circle i_cierre" /> Cierre{" "}
