@@ -92,20 +92,26 @@ class Dashboard extends React.Component {
       for (var payment of project.recived) {
         totalRecieve += payment.amount
         let month = payment.date.toDate().getMonth()
-
+        console.log("gg",moneyMandatos[mandato],mandato)
         moneyMandatos[mandato][month] +=payment.amount
         localTotal += payment.amount
       }
 
       project.totalRecieve = localTotal
 
-      for (var waste of project.wasted) {
-        totalWaste += waste.amount
-        let month = waste.date.toDate().getMonth()
-        wastes[month] += waste.amount
+    }
+
+    let obj = {...moneyMandatos}
+
+    for(var mandatoP in moneyMandatos){
+
+      let s = 0;
+      let res = []
+      for(var money of moneyMandatos[mandatoP]){
+        res.push(s+=money)
       }
 
-
+      obj[mandatoP] = res
     }
 
     return { activeCountries: activeCountries,
@@ -113,8 +119,7 @@ class Dashboard extends React.Component {
         totalWaste: totalWaste,
         fases:Object.values(fases),
         timePayments:payments,
-        timeWastes: wastes,
-        moneyMandatos: moneyMandatos,
+        moneyMandatos: obj,
         projects:this.state.projects}
 
   }
