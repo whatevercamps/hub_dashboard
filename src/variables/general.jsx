@@ -19,7 +19,11 @@
 // ##############################
 // // // table head data and table body data for Tables view
 // #############################
-
+const mandatos = {
+  'poblacion': 'población y estrategias de desarrollo',
+  'salud': 'salud reproductiva',
+  'genero': 'igualdad de género'
+}
 const thead = ["Name", "Country", "City", "Salary"];
 const tbody = [
   {
@@ -51,4 +55,4 @@ const tbody = [
 
 // data for <thead> of table in TableList view
 // data for <tbody> of table in TableList view
-export { thead, tbody };
+export { thead, tbody, mandatos };

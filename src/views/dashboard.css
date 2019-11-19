@@ -30,10 +30,23 @@
   background-color:#EF476F;
 }
 
-.dropdown-menu #desarrollo:hover{
+.dropdown-menu #salud:hover{
     background-color:#19EAD5;
   }
 
   .dropdown-menu #poblacion:hover{
     background-color:#FFE316;
   }
+
+
+.i_genero {
+    color: #EF476F
+}
+
+.i_poblacion {
+    color: #FFE316
+}
+
+.i_salud {
+    color: #19EAD5
+}

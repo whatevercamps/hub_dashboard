@@ -1,21 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import Dashboard from "views/Dashboard.jsx";
 import Notifications from "views/Notifications.jsx";
 import Icons from "views/Icons.jsx";
@@ -32,56 +14,56 @@ var routes = [
     icon: "nc-icon nc-bank",
     component: Dashboard,
     layout: "/admin"
-  },
-  {
-    path: "/cambios",
-    name: "Administración",
-    icon: "nc-icon nc-diamond",
-    component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Mapas",
-    icon: "nc-icon nc-pin-3",
-    component: Maps,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notificaciones (V 2)",
-    icon: "nc-icon nc-bell-55",
-    component: Notifications,
-    layout: "/admin"
-  },
-  {
-    path: "/user-page",
-    name: "Equipo control (V 2)",
-    icon: "nc-icon nc-single-02",
-    component: UserPage,
-    layout: "/admin"
-  },
-  {
-    path: "/tables",
-    name: "Otros equipos",
-    icon: "nc-icon nc-tile-56",
-    component: TableList,
-    layout: "/admin"
-  },
-  {
-    path: "/typography",
-    name: "Indicadores",
-    icon: "nc-icon nc-caps-small",
-    component: Typography,
-    layout: "/admin"
-  },
-  {
-    pro: true,
-    path: "/upgrade",
-    name: "Bootcamps (V 2)",
-    icon: "nc-icon nc-spaceship",
-    component: UpgradeToPro,
-    layout: "/admin"
   }
+  // {
+  //   path: "/cambios",
+  //   name: "Administración",
+  //   icon: "nc-icon nc-diamond",
+  //   component: Icons,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/maps",
+  //   name: "Mapas",
+  //   icon: "nc-icon nc-pin-3",
+  //   component: Maps,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/notifications",
+  //   name: "Notificaciones (V 2)",
+  //   icon: "nc-icon nc-bell-55",
+  //   component: Notifications,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/user-page",
+  //   name: "Equipo control (V 2)",
+  //   icon: "nc-icon nc-single-02",
+  //   component: UserPage,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/tables",
+  //   name: "Otros equipos",
+  //   icon: "nc-icon nc-tile-56",
+  //   component: TableList,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/typography",
+  //   name: "Indicadores",
+  //   icon: "nc-icon nc-caps-small",
+  //   component: Typography,
+  //   layout: "/admin"
+  // },
+  // {
+  //   pro: true,
+  //   path: "/dashboard",
+  //   name: "Bootcamps (V 2)",
+  //   icon: "nc-icon nc-spaceship",
+  //   component: Dashboard,
+  //   layout: "/admin"
+  // }
 ];
 export default routes;

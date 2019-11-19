@@ -22,11 +22,12 @@ import {
   dashboardEmailStatisticsChart,
   dashboardNASDAQChart
 } from "variables/charts.jsx";
-
+import { mandatos } from "variables/general.jsx"
 import './dashboard.css'
 import { buildChildren } from "@babel/types";
 
 class Dashboard extends React.Component {
+
 
   manejarDineros = (n) => {
     var ranges = [
@@ -34,7 +35,7 @@ class Dashboard extends React.Component {
       { divider: 1e6, suffix: 'M' },
       { divider: 1e3, suffix: 'K' }
     ];
-    n = n*1000
+    n = n * 1000
     for (var i = 0; i < ranges.length; i++) {
       if (n >= ranges[i].divider) {
         return (n / ranges[i].divider).toString() + ranges[i].suffix;
@@ -93,7 +94,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Proyectos</p>
-                        <CardTitle tag="p">{this.props.data && this.props.data.projects ? this.props.data.projects.length : 0}</CardTitle>
+                        <CardTitle tag="p">{this.props.data && this.props.data.projects ? this.props.mandato == 'todos' ? (this.props.data.projects.length || 0) : this.props.data.projects.filter(d => d.mandato == mandatos[this.props.mandato]).length : 0}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -139,7 +140,7 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <div style={{ width: '80%', padding: '0', margin: '0' }}>
+                        <div style={{ width: '100%', padding: '0', margin: '0' }}>
 
                           <CircularProgressbar value={70} text={`${70}%`} styles={buildStyles({
                             textColor: '#d3d3d3',
@@ -205,7 +206,7 @@ class Dashboard extends React.Component {
                   </div>
                   <hr />
                   <div className="stats">
-                    <i className="fa fa-calendar" /> Total de proyectos: {this.props.data && this.props.data.projects ? this.props.data.projects.length : 0}
+                    <i className="fa fa-calendar" /> Total de proyectos: {this.props.data && this.props.data.projects ? this.props.mandato == 'todos' ? (this.props.data.projects.length || 0) : this.props.data.projects.filter(d => d.mandato == mandatos[this.props.mandato]).length : 0}
                   </div>
                 </CardFooter>
               </Card>
@@ -213,18 +214,25 @@ class Dashboard extends React.Component {
             <Col md="8">
               <Card className="card-chart">
                 <CardHeader>
-                  <CardTitle tag="h5">Mandatos</CardTitle>
+                  <CardTitle tag="h5">Recaudo mensual</CardTitle>
                   <p className="card-category">Año 2019</p>
                 </CardHeader>
                 <CardBody>
                   <Line
                     data={() => {
-                      let data = dashboardNASDAQChart.data;
-                      data.datasets[0].data = this.props.data.moneyMandatos['salud reproductiva'];
-                      data.datasets[1].data = this.props.data.moneyMandatos['estrategias de desarrollo'];
-                      data.datasets[2].data = this.props.data.moneyMandatos['igualdad de género y población'];
-                      console.log(data)
-                      return data;
+                      let dataq = {...dashboardNASDAQChart.data};
+                      
+                      if (this.props.mandato === 'todos') {
+                        
+                        dataq.datasets[0].data = this.props.data.moneyMandatos['salud reproductiva'];
+                        dataq.datasets[1].data = this.props.data.moneyMandatos['población y estrategias de desarrollo'];
+                        dataq.datasets[2].data = this.props.data.moneyMandatos['igualdad de género'];
+                      } else {
+                        let datasetMandato = dataq.datasets.find(d => d.label == mandatos[this.props.mandato])
+                        dataq.datasets = [datasetMandato]
+                      }
+
+                      return dataq;
                     }}
                     options={dashboardNASDAQChart.options}
                     width={400}
@@ -233,12 +241,13 @@ class Dashboard extends React.Component {
                 </CardBody>
                 <CardFooter>
                   <div className="chart-legend">
-                    <i className="fa fa-circle text-info" /> ECHO{" "}
-                    <i className="fa fa-circle text-warning" /> Planea App
+                    <i className="fa fa-circle i_genero" /> Violencia de género{"  "}
+                    <i className="fa fa-circle i_poblacion" /> Población y desarrollo{"  "}
+                    <i className="fa fa-circle i_salud" /> Salud reproductiva
                   </div>
                   <hr />
                   <div className="card-stats">
-                    <i className="fa fa-check" /> Ver otros
+                    <i className="fa fa-check" /> Recaudo mensual acumulado por mandato 
                   </div>
                 </CardFooter>
               </Card>

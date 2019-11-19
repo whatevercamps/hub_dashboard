@@ -9,7 +9,7 @@ import {
 import todosIcon from 'assets/img/icons/todos.svg'
 import generoIcon from 'assets/img/icons/genero.svg'
 import poblacionIcon from 'assets/img/icons/poblacion.svg'
-import desarrolloIcon from 'assets/img/icons/desarrollo.svg'
+import saludIcon from 'assets/img/icons/salud.svg'
 
 export default class SeleccionadorMandato extends Component {
     constructor(props) {
@@ -68,10 +68,10 @@ export default class SeleccionadorMandato extends Component {
         switch (this.props.mandato) {
             case 'genero':
                 return generoIcon;
-            case 'desarrollo':
-                return desarrolloIcon;
             case 'poblacion':
                 return poblacionIcon;
+            case 'salud':
+                return saludIcon;
             default:
                 return todosIcon;
         }
@@ -86,10 +86,10 @@ render() {
             <DropdownToggle caret nav className="dropdown-toggle-mandato">
                 <img style={{maxHeight: '49.33px'}} src={this.selMandatoIcon()} />
             </DropdownToggle>
-            <DropdownMenu right>
-                <DropdownItem tag="a" id="genero" onClick={() => this.handleClick("genero")}>V. género</DropdownItem>
-                <DropdownItem tag="a" id="salud" onClick={() => this.handleClick("salud")}>Salud</DropdownItem>
-                <DropdownItem tag="a" id="desarrollo" onClick={() => this.handleClick("desarrollo")}>Desarrollo</DropdownItem>
+            <DropdownMenu>
+                <DropdownItem tag="a" id="genero" onClick={() => this.handleClick("genero")}>Violencia de género</DropdownItem>
+                <DropdownItem tag="a" id="salud" onClick={() => this.handleClick("salud")}>Salud reproductiva</DropdownItem>
+                <DropdownItem tag="a" id="poblacion" onClick={() => this.handleClick("poblacion")}>Población y Desarrollo</DropdownItem>
                 <DropdownItem tag="a" id="todos" onClick={() => this.handleClick("todos")}>Todos</DropdownItem>
             </DropdownMenu>
         </Dropdown>

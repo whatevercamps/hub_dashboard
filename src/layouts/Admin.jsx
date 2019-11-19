@@ -56,8 +56,8 @@ class Dashboard extends React.Component {
 
     let moneyMandatos = {
       "salud reproductiva": [0,0,0,0,0,0,0,0,0,0,0,0],
-      "estrategias de desarrollo":[0,0,0,0,0,0,0,0,0,0,0,0],
-      "igualdad de género y población":[0,0,0,0,0,0,0,0,0,0,0,0],
+      "población y estrategias de desarrollo":[0,0,0,0,0,0,0,0,0,0,0,0],
+      "igualdad de género":[0,0,0,0,0,0,0,0,0,0,0,0],
     }
 
     let filterProjects = this.state.projects.filter( project => 
@@ -65,10 +65,10 @@ class Dashboard extends React.Component {
       if (this.state.mandatoActual == "salud" && project.mandato == "salud reproductiva")
         return true
       
-      else if (this.state.mandatoActual == "genero" && project.mandato == "igualdad de género y población")
+      else if (this.state.mandatoActual == "genero" && project.mandato == "igualdad de género")
         return true
 
-      else if (this.state.mandatoActual == "desarrollo" && project.mandato == "estrategias de desarrollo")
+      else if (this.state.mandatoActual == "poblacion" && project.mandato == "población y estrategias de desarrollo")
         return true
 
       else if (this.state.mandatoActual == "todos")
