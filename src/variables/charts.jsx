@@ -189,7 +189,7 @@ const dashboardNASDAQChart = {
         pointBorderWidth: 8
       },
       {
-        label: 'igualdad de género y población',
+        label: 'igualdad de género',
         data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
         borderColor: "#F9F929",

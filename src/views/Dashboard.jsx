@@ -221,8 +221,8 @@ class Dashboard extends React.Component {
                     data={() => {
                       let data = dashboardNASDAQChart.data;
                       data.datasets[0].data = this.props.data.moneyMandatos['salud reproductiva'];
-                      data.datasets[1].data = this.props.data.moneyMandatos['estrategias de desarrollo'];
-                      data.datasets[2].data = this.props.data.moneyMandatos['igualdad de género y población'];
+                      data.datasets[1].data = this.props.data.moneyMandatos['población y estrategias de desarrollo'];
+                      data.datasets[2].data = this.props.data.moneyMandatos['igualdad de género'];
                       console.log(data)
                       return data;
                     }}

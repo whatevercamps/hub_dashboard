@@ -56,8 +56,8 @@ class Dashboard extends React.Component {
 
     let moneyMandatos = {
       "salud reproductiva": [0,0,0,0,0,0,0,0,0,0,0,0],
-      "estrategias de desarrollo":[0,0,0,0,0,0,0,0,0,0,0,0],
-      "igualdad de género y población":[0,0,0,0,0,0,0,0,0,0,0,0],
+      "población y estrategias de desarrollo":[0,0,0,0,0,0,0,0,0,0,0,0],
+      "igualdad de género":[0,0,0,0,0,0,0,0,0,0,0,0],
     }
 
     let filterProjects = this.state.projects.filter( project => 
@@ -65,7 +65,7 @@ class Dashboard extends React.Component {
       if (this.state.mandatoActual == "salud" && project.mandato == "salud reproductiva")
         return true
       
-      else if (this.state.mandatoActual == "genero" && project.mandato == "igualdad de género y población")
+      else if (this.state.mandatoActual == "genero" && project.mandato == "igualdad de género")
         return true
 
       else if (this.state.mandatoActual == "desarrollo" && project.mandato == "estrategias de desarrollo")
@@ -92,20 +92,26 @@ class Dashboard extends React.Component {
       for (var payment of project.recived) {
         totalRecieve += payment.amount
         let month = payment.date.toDate().getMonth()
-
+        console.log("gg",moneyMandatos[mandato],mandato)
         moneyMandatos[mandato][month] +=payment.amount
         localTotal += payment.amount
       }
 
       project.totalRecieve = localTotal
 
-      for (var waste of project.wasted) {
-        totalWaste += waste.amount
-        let month = waste.date.toDate().getMonth()
-        wastes[month] += waste.amount
+    }
+
+    let obj = {...moneyMandatos}
+
+    for(var mandatoP in moneyMandatos){
+
+      let s = 0;
+      let res = []
+      for(var money of moneyMandatos[mandatoP]){
+        res.push(s+=money)
       }
 
-
+      obj[mandatoP] = res
     }
 
     return { activeCountries: activeCountries,
@@ -113,8 +119,7 @@ class Dashboard extends React.Component {
         totalWaste: totalWaste,
         fases:Object.values(fases),
         timePayments:payments,
-        timeWastes: wastes,
-        moneyMandatos: moneyMandatos,
+        moneyMandatos: obj,
         projects:this.state.projects}
 
   }
