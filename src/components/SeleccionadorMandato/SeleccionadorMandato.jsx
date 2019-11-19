@@ -88,7 +88,7 @@ render() {
             </DropdownToggle>
             <DropdownMenu right>
                 <DropdownItem tag="a" id="genero" onClick={() => this.handleClick("genero")}>V. género</DropdownItem>
-                <DropdownItem tag="a" id="poblacion" onClick={() => this.handleClick("poblacion")}>Población</DropdownItem>
+                <DropdownItem tag="a" id="salud" onClick={() => this.handleClick("salud")}>Salud</DropdownItem>
                 <DropdownItem tag="a" id="desarrollo" onClick={() => this.handleClick("desarrollo")}>Desarrollo</DropdownItem>
                 <DropdownItem tag="a" id="todos" onClick={() => this.handleClick("todos")}>Todos</DropdownItem>
             </DropdownMenu>

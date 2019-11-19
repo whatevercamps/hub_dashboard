@@ -60,7 +60,25 @@ class Dashboard extends React.Component {
       "igualdad de género y población":[0,0,0,0,0,0,0,0,0,0,0,0],
     }
 
-    for (var project of this.state.projects) {
+    let filterProjects = this.state.projects.filter( project => 
+      {
+      if (this.state.mandatoActual == "salud" && project.mandato == "salud reproductiva")
+        return true
+      
+      else if (this.state.mandatoActual == "genero" && project.mandato == "igualdad de género y población")
+        return true
+
+      else if (this.state.mandatoActual == "desarrollo" && project.mandato == "estrategias de desarrollo")
+        return true
+
+      else if (this.state.mandatoActual == "todos")
+        return true
+      else 
+        return false
+      }
+    )
+
+    for (var project of filterProjects) {
       
 
       fases[project.fase] +=1
@@ -89,14 +107,7 @@ class Dashboard extends React.Component {
 
 
     }
-    console.log({ activeCountries: activeCountries,
-      totalRecieve: totalRecieve,
-       totalWaste: totalWaste,
-       fases:Object.values(fases),
-       timePayments:payments,
-       timeWastes: wastes,
-       moneyMandatos: moneyMandatos,
-       projects:this.state.projects})
+
     return { activeCountries: activeCountries,
        totalRecieve: totalRecieve,
         totalWaste: totalWaste,
@@ -132,8 +143,6 @@ class Dashboard extends React.Component {
 
   }
 
-  componentDidMount() {
-  }
 
 
   componentDidUpdate(e) {
