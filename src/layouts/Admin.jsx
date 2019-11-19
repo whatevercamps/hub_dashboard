@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
       activeColor: "info",
       projects: [],
       totalCountries: 23,
+      mandatoActual: 'todos'
 
     };
     this.mainPanel = React.createRef();
@@ -147,6 +148,12 @@ class Dashboard extends React.Component {
   handleBgClick = color => {
     this.setState({ backgroundColor: color });
   };
+
+  handleChangeMandato = (e) => {
+    console.log('hliiii', e)
+    this.setState({ mandatoActual: e });
+  }
+
   render() {
     this.calculate()
     return (
@@ -168,6 +175,8 @@ class Dashboard extends React.Component {
                   render={props => (
                     <prop.component
                       {...props}
+                      handleChangeMandato={this.handleChangeMandato}
+                      mandato={this.state.mandatoActual}
                       data={this.calculate()}
                     />
                   )}

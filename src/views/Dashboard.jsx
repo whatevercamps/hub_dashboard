@@ -27,6 +27,23 @@ import './dashboard.css'
 import { buildChildren } from "@babel/types";
 
 class Dashboard extends React.Component {
+
+  manejarDineros = (n) => {
+    var ranges = [
+      { divider: 1e9, suffix: 'MM' },
+      { divider: 1e6, suffix: 'M' },
+      { divider: 1e3, suffix: 'K' }
+    ];
+    n = n*1000
+    for (var i = 0; i < ranges.length; i++) {
+      if (n >= ranges[i].divider) {
+        return (n / ranges[i].divider).toString() + ranges[i].suffix;
+      }
+    }
+    return n.toString();
+
+  }
+
   render() {
     console.log(this.props)
     return (
@@ -40,16 +57,17 @@ class Dashboard extends React.Component {
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
                         {/* <i className="nc-icon nc-chat-33 text-warning" /> */}
-                        <FitText compressor={0.15}>
-                          <SeleccionadorMandato />
-                        </FitText>
+                        <SeleccionadorMandato setMandato={this.props.handleChangeMandato} mandato={this.props.mandato} />
 
                       </div>
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Mandato</p>
-                        <CardTitle tag="p">{this.props.data ? this.props.data.activeCountries.size : 0} de 23</CardTitle>
+                        <FitText compressor={0.7}>
+                          <CardTitle tag="p">{this.props.mandato || 'todos'}</CardTitle>
+                        </FitText>
+
                         <p />
                       </div>
                     </Col>
@@ -101,7 +119,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Ingresos</p>
-                        <CardTitle tag="p">${this.props.data.totalRecieve}</CardTitle>
+                        <CardTitle tag="p">${this.manejarDineros(this.props.data.totalRecieve)}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -121,12 +139,15 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <div style={{ height: '100%', width: '100%', padding: '3%', margin: '3%' }}>
+                        <div style={{ width: '80%', padding: '0', margin: '0' }}>
+
                           <CircularProgressbar value={70} text={`${70}%`} styles={buildStyles({
                             textColor: '#d3d3d3',
                             pathColor: `#6bd098`,
                             trailColor: '#d3d3d3'
                           })} />
+
+
                         </div>
 
 

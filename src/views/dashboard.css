@@ -22,6 +22,9 @@
     z-index: 1000000 !important;
 }
 
+.dropdown-toggle-mandato {
+    padding: 0 !important;
+}
 
 .dropdown-menu #genero:hover{
   background-color:#EF476F;
