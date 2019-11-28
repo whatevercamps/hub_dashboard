@@ -13,6 +13,7 @@
     "perfect-scrollbar": "1.4.0",
     "rc-progress": "^2.5.2",
     "react": "16.8.6",
+    "react-bootstrap-table-next": "^3.3.1",
     "react-chartjs-2": "2.7.6",
     "react-circular-progressbar": "^2.0.3",
     "react-dom": "16.8.6",

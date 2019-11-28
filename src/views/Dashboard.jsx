@@ -25,6 +25,7 @@ import {
 import { mandatos } from "variables/general.jsx"
 import './dashboard.css'
 import { buildChildren } from "@babel/types";
+import ListadoProyectos from "components/ListadoProyectos/ListadoProyectos";
 
 class Dashboard extends React.Component {
 
@@ -261,6 +262,7 @@ class Dashboard extends React.Component {
                   <p className="card-category">Hace 24 horas</p>
                 </CardHeader>
                 <CardBody>
+                  <ListadoProyectos projects={this.props.data.projects}/>
                 </CardBody>
                 <CardFooter>
                   <hr />
@@ -276,5 +278,7 @@ class Dashboard extends React.Component {
     );
   }
 }
+
+
 
 export default Dashboard;

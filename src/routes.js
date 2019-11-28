@@ -14,7 +14,7 @@ var routes = [
     icon: "nc-icon nc-bank",
     component: Dashboard,
     layout: "/admin"
-  }
+  },
   // {
   //   path: "/cambios",
   //   name: "Administración",
@@ -43,13 +43,13 @@ var routes = [
   //   component: UserPage,
   //   layout: "/admin"
   // },
-  // {
-  //   path: "/tables",
-  //   name: "Otros equipos",
-  //   icon: "nc-icon nc-tile-56",
-  //   component: TableList,
-  //   layout: "/admin"
-  // },
+  {
+    path: "/tables",
+    name: "Otros equipos",
+    icon: "nc-icon nc-tile-56",
+    component: TableList,
+    layout: "/admin"
+  }
   // {
   //   path: "/typography",
   //   name: "Indicadores",
