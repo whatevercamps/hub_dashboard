@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://54.88.31.162/",
   "dependencies": {
+    "@amcharts/amcharts4": "^4.7.12",
     "@kennethormandy/react-fittext": "^0.6.0",
     "bootstrap": "4.3.1",
     "chart.js": "2.8.0",
@@ -22,6 +23,7 @@
     "react-router": "5.0.0",
     "react-router-dom": "5.0.0",
     "react-scripts": "3.0.1",
+    "react-with-firebase-auth": "^1.2.0",
     "reactstrap": "8.0.0"
   },
   "scripts": {

@@ -10,11 +10,16 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import routes from "routes.js";
 
+import withFirebaseAuth from 'react-with-firebase-auth'
 import firebase from "firebase";
 import { firebaseConfig } from 'variables/Config';
+import 'firebase/auth';
 import 'firebase/database';
 
 var ps;
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -33,8 +38,13 @@ class Dashboard extends React.Component {
       this.app = firebase.initializeApp(firebaseConfig);
 
     }
-    this.db = firebase.firestore();
 
+    this.db = firebase.firestore();
+    this.auth = firebase.auth();
+
+    this.providers = {
+      googleProvider: new firebase.auth.GoogleAuthProvider(),
+    };
   }
 
 
@@ -44,27 +54,26 @@ class Dashboard extends React.Component {
     let activeCountries = new Set();
     let totalRecieve = 0;
     let totalWaste = 0;
-    let payments = [0,0,0,0,0,0,0,0,0,0,0,0];
-    let wastes = [0,0,0,0,0,0,0,0,0,0,0,0];
+    let payments = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let wastes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let fases = {
-      concepto:0,
-      planeacion:0,
-      implementacion:0,
-      control:0,
-      cierre:0
+      concepto: 0,
+      planeacion: 0,
+      implementacion: 0,
+      control: 0,
+      cierre: 0
     }
 
     let moneyMandatos = {
-      "salud reproductiva": [0,0,0,0,0,0,0,0,0,0,0,0],
-      "población y estrategias de desarrollo":[0,0,0,0,0,0,0,0,0,0,0,0],
-      "igualdad de género":[0,0,0,0,0,0,0,0,0,0,0,0],
+      "salud reproductiva": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "población y estrategias de desarrollo": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "igualdad de género": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     }
 
-    let filterProjects = this.state.projects.filter( project => 
-      {
+    let filterProjects = this.state.projects.filter(project => {
       if (this.state.mandatoActual == "salud" && project.mandato == "salud reproductiva")
         return true
-      
+
       else if (this.state.mandatoActual == "genero" && project.mandato == "igualdad de género")
         return true
 
@@ -73,27 +82,26 @@ class Dashboard extends React.Component {
 
       else if (this.state.mandatoActual == "todos")
         return true
-      else 
+      else
         return false
-      }
+    }
     )
 
     for (var project of filterProjects) {
-      
 
-      fases[project.fase] +=1
+
+      fases[project.fase] += 1
       if (project.active) {
         activeCountries.add(project.country)
       }
 
-      
+
       let mandato = project.mandato
       let localTotal = 0
       for (var payment of project.recived) {
         totalRecieve += payment.amount
         let month = payment.date.toDate().getMonth()
-        console.log("gg",moneyMandatos[mandato],mandato)
-        moneyMandatos[mandato][month] +=payment.amount
+        moneyMandatos[mandato][month] += payment.amount
         localTotal += payment.amount
       }
 
@@ -101,36 +109,36 @@ class Dashboard extends React.Component {
 
     }
 
-    let obj = {...moneyMandatos}
+    let obj = { ...moneyMandatos }
 
-    for(var mandatoP in moneyMandatos){
+    for (var mandatoP in moneyMandatos) {
 
       let s = 0;
       let res = []
-      for(var money of moneyMandatos[mandatoP]){
-        res.push(s+=money)
+      for (var money of moneyMandatos[mandatoP]) {
+        res.push(s += money)
       }
 
       obj[mandatoP] = res
     }
 
-    return { activeCountries: activeCountries,
-       totalRecieve: totalRecieve,
-        totalWaste: totalWaste,
-        fases:Object.values(fases),
-        timePayments:payments,
-        moneyMandatos: obj,
-        projects:filterProjects}
+    return {
+      activeCountries: activeCountries,
+      totalRecieve: totalRecieve,
+      totalWaste: totalWaste,
+      fases: Object.values(fases),
+      timePayments: payments,
+      moneyMandatos: obj,
+      projects: filterProjects
+    }
 
   }
 
 
   componentDidMount() {
-    console.log("consoleDidMount")
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.mainPanel.current);
       document.body.classList.toggle("perfect-scrollbar-on");
-
     }
   }
   componentWillMount() {
@@ -164,11 +172,16 @@ class Dashboard extends React.Component {
   };
 
   handleChangeMandato = (e) => {
-    console.log('hliiii', e)
     this.setState({ mandatoActual: e });
   }
 
   render() {
+    const {
+      user,
+      signOut,
+      signInWithGoogle,
+    } = this.props;
+
     this.calculate()
     return (
       <div className="wrapper">
@@ -212,4 +225,14 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+
+const firebaseAppAuth = firebaseApp.auth();
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
+// export default Dashboard;
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(Dashboard);

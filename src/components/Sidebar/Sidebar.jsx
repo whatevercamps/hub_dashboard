@@ -43,7 +43,7 @@ class Sidebar extends React.Component {
             className="simple-text logo-mini"
           >
             <div className="logo-img">
-              <i className="nc-icon nc-spaceship"/>
+              <i className="nc-icon nc-spaceship" />
             </div>
           </a>
           <a
@@ -54,6 +54,20 @@ class Sidebar extends React.Component {
         </div>
         <div className="sidebar-wrapper" ref={this.sidebar}>
           <Nav>
+            <li
+            >
+              {
+                this.props.user
+                  ? <p>Hello, {this.props.user.displayName}</p>
+                  : <p>Please sign in.</p>
+              }
+
+              {
+                this.props.user
+                  ? <button onClick={this.props.signOut}>Sign out</button>
+                  : <button onClick={this.props.signInWithGoogle}>Sign in with Google</button>
+              }
+            </li>
             {this.props.routes.map((prop, key) => {
               return (
                 <li
