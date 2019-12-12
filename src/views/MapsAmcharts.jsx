@@ -30,10 +30,10 @@ class Map extends React.Component {
         var polygonTemplate = worldSeries.mapPolygons.template;
 
         polygonTemplate.tooltipText = "{name}";
-        polygonTemplate.fill = am4core.color("#74B266");
+        polygonTemplate.fill = am4core.color("#7C7C7C");
         polygonTemplate.propertyFields.disabled = "disabled";
         var hs = polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("#367B25");
+        hs.properties.fill = am4core.color("#6B6B6B");
 
 
 
@@ -44,9 +44,9 @@ class Map extends React.Component {
         var imageSeriesTemplate = imageSeries.mapImages.template;
         var circle = imageSeriesTemplate.createChild(am4core.Circle);
         circle.radius = 4;
-        circle.fill = am4core.color("#B27799");
+        circle.fill = am4core.color("#f1853b");
         circle.stroke = am4core.color("#FFFFFF");
-        circle.strokeWidth = 2;
+        circle.strokeWidth = 1;
         circle.nonScaling = true;
         circle.tooltipText = "{title}";
 
@@ -59,6 +59,15 @@ class Map extends React.Component {
         imageSeries.data = [];
         this.imageSeries = imageSeries;
         this.chart = chart;
+
+        if (this.props.data.projects.length > 0) {
+            this.imageSeries.data = this.props.data.projects.map(pr => {
+                pr.title = pr.name;
+                pr.latitude = pr.location.latitude;
+                pr.longitude = pr.location.longitude;
+                return pr;
+            })
+        }
     }
 
     componentDidUpdate() {

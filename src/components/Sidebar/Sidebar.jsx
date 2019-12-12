@@ -69,6 +69,9 @@ class Sidebar extends React.Component {
               }
             </li>
             {this.props.routes.map((prop, key) => {
+              if (prop.path == "/detailProyecto") {
+                return (<></>)
+              }
               return (
                 <li
                   className={

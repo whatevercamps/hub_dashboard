@@ -1,30 +1,36 @@
 import React, { Component } from 'react'
+import { Redirect } from "react-router-dom"
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardTitle,
-    Table,
-    Row,
-    Col
+    Table
 } from "reactstrap";
 
 
 export default class ListadoProyectos extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
 
         console.log(props)
-        
+
+        this.state = {
+            toDetail: false
+        }
     }
 
 
-    handleClick(e){
-        this.props.setProject(e)
+    handleClick(e) {
+        this.props.setProject(e);
+        this.setState({toDetail : true})
+    }
+
+    componentWillMount(){
+        this.setState({toDetail: false})
     }
 
     render() {
+        if (this.state.toDetail === true) {
+            return <Redirect to='detailProyecto' />
+          }
         return (
             <Table responsive>
                 <thead className="text-primary">
@@ -42,16 +48,16 @@ export default class ListadoProyectos extends Component {
                 </thead>
                 <tbody>
                     {this.props.projects.map((d, index) => {
-                        return <tr onClick={() => this.handleClick(d) } key={index}>
-                            <td>{d.name}</td>
-                            <td>{d.City}</td>
-                            <td className="text-right">{d.meta}</td>
-                            <td className="text-right">{d.totalRecieve}</td>
-                            <td>{d.fase}</td>
-                            <td>{d.mandato}</td>
-                            <td className="text-right">{d["costo/beneficio"]}</td>
-                            <td className="text-right">{d.replicabilidad}</td>
-                            <td className="text-right">{d.sostenibilidad}</td>
+                        return <tr onClick={() => this.handleClick(d)} key={index} >
+                                <td>{d.name}</td>
+                                <td>{d.City}</td>
+                                <td className="text-right">{d.meta}</td>
+                                <td className="text-right">{d.totalRecieve}</td>
+                                <td>{d.fase}</td>
+                                <td>{d.mandato}</td>
+                                <td className="text-right">{d["costo/beneficio"]}</td>
+                                <td className="text-right">{d.replicabilidad}</td>
+                                <td className="text-right">{d.sostenibilidad}</td>
                         </tr>
                     })}
                 </tbody>
