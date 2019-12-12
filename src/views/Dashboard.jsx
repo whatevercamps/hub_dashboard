@@ -47,7 +47,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <>
         <div className="content">
@@ -191,7 +190,6 @@ class Dashboard extends React.Component {
                     data={() => {
                       let data = dashboardEmailStatisticsChart.data();
                       data.datasets[0].data = this.props.data.fases;
-                      console.log(data)
                       return data;
                     }}
                     options={dashboardEmailStatisticsChart.options}
@@ -262,7 +260,7 @@ class Dashboard extends React.Component {
                   <p className="card-category">Hace 24 horas</p>
                 </CardHeader>
                 <CardBody>
-                  <ListadoProyectos projects={this.props.data.projects}/>
+                  <ListadoProyectos projects={this.props.data.projects} setProject={this.props.handleClickProject}/>
                 </CardBody>
                 <CardFooter>
                   <hr />

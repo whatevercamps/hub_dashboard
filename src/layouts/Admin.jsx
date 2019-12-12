@@ -29,8 +29,8 @@ class Dashboard extends React.Component {
       activeColor: "info",
       projects: [],
       totalCountries: 23,
-      mandatoActual: 'todos'
-
+      mandatoActual: 'todos',
+      projectActual: {}
     };
     this.mainPanel = React.createRef();
 
@@ -175,6 +175,14 @@ class Dashboard extends React.Component {
     this.setState({ mandatoActual: e });
   }
 
+
+  handleClickProject = (e) => {
+    console.log(e)
+    this.setState({projectActual: e})
+    console.log(this.state)
+
+  }
+
   render() {
     const {
       user,
@@ -203,8 +211,10 @@ class Dashboard extends React.Component {
                     <prop.component
                       {...props}
                       handleChangeMandato={this.handleChangeMandato}
+                      handleClickProject={this.handleClickProject}
                       mandato={this.state.mandatoActual}
                       data={this.calculate()}
+                      projectActive={this.state.projectActual}
                     />
                   )}
                   key={key}

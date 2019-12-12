@@ -11,6 +11,19 @@ import {
 
 
 export default class ListadoProyectos extends Component {
+
+    constructor(props){
+        super(props)
+
+        console.log(props)
+        
+    }
+
+
+    handleClick(e){
+        this.props.setProject(e)
+    }
+
     render() {
         return (
             <Table responsive>
@@ -29,7 +42,7 @@ export default class ListadoProyectos extends Component {
                 </thead>
                 <tbody>
                     {this.props.projects.map((d, index) => {
-                        return <tr key={index}>
+                        return <tr onClick={() => this.handleClick(d) } key={index}>
                             <td>{d.name}</td>
                             <td>{d.City}</td>
                             <td className="text-right">{d.meta}</td>
